@@ -10,4 +10,4 @@ const db = new Sequelize ({
     database: 'movies_crud'
 });
 
-module.exports = { db };
+module.exports =  db;
