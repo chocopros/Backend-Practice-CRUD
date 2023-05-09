@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 
+const config = require('./config');
 
 //>USE FORMAT JSON
 app.use(express.json());
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 //> SERVER PORT USE
-const PORT = 9000;
+const PORT = config.port;
 app.listen(PORT, () => {
     console.log(`SERVER STARTED ON PORT:${PORT}`);
 });
