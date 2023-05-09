@@ -3,11 +3,12 @@ const express = require('express');
 const app = express();
 
 
-//> Use format JSON
+//>USE FORMAT JSON
 app.use(express.json());
 
 //> >>DATABASE<<
 const db = require('./utils/database');
+const initModels = require('./models/initModels')
 
 db.authenticate()
     .then(() => console.log(`>> ** DB Authentication Succesfully ** <<`))
@@ -17,6 +18,7 @@ db.sync()
   .then(() => console.log('>> ** Database synced ** <<'))
   .catch(err => console.log(err));
 
+initModels()
 
 //> MAIN SHOW
 app.get("/", (req, res) => {
