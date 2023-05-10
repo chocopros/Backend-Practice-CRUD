@@ -55,3 +55,8 @@ console.log(getAllMovies()
     .catch(err => console.log(err))
 );
 */
+//>TEST GET ALL MOVIES
+console.log(getMovieById('81435165-48d1-4df1-861d-0e1115b1f6e4')
+    .then(r => r ? console.log(r.dataValues) : console.log(">>> ID No encontrado <<<"))
+    .catch(err => console.log(err))
+);
