@@ -32,8 +32,20 @@ const getMovieById = (req, res) => {
         .catch(err => res.status(404).json({message: err.message}))
 };
 
+
+//> Modificacion parcial
+const patchMovie = (req, res) => {
+    const id = req.params.id
+    const {name, genre, duration, releaseDate} = req.body
+
+    moviesControllers.editMovie(id, {name, genre, duration, releaseDate})
+        .then( r => res.status(200).json({message: `>> the id:${id} has modificated`}))
+        .catch( err => res.status(400).json({message: err.message}))
+}
+
 module.exports = {
     getAllMovies,
     getMovieById,
-    postMovie
+    postMovie,
+    patchMovie
 }

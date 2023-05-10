@@ -36,10 +36,22 @@ const getMovieById = async(id) => {
     return movieId
 };
 
+//> Editar una pelicula
+const editMovie = async(id, data) => {
+    const response = await Movies.update(data, {
+        where: {
+            id: id,
+        }
+    })
+    return response
+};
+
+
 module.exports = {
     getAllMovies,
     getMovieById,
-    createMovie
+    createMovie,
+    editMovie
 }
 
 
@@ -72,4 +84,11 @@ console.log(getMovieById('7be32ce6-05c7-4783-befb-08e0f8d522f7')
     .then(r => r ? console.log(r.dataValues) : console.log(">>> ID No encontrado <<<"))
     .catch(err => console.log(err))
 );
+*/
+
+//>TEST EDICT MOVIE
+/*
+editMovie('267d4821-052f-4139-8190-690f8c21a444',{releaseDate: '2023-03-26'})
+    .then(r => console.log(r))
+    .catch(err => console.log(err))
 */
