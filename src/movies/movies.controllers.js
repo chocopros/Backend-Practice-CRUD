@@ -4,12 +4,14 @@ const Movies = require('../models/movies.models');
 
 //> Create Information
 const createMovie = async(data) => {
+    const uuidCreate = uuid.v4()
     const newMovie = await Movies.create({
-        id: uuid.v4(),
+        id: uuidCreate,
         name: data.name,
         genre: data.genre,
         duration: data.duration,
-        releaseDate: data.releaseDate
+        releaseDate: data.releaseDate,
+        link: `http://127.0.0.1:9000/movies/${uuidCreate}`
     })
     return newMovie
 };

@@ -1,5 +1,7 @@
 const router = require('express').Router()
 
+const moviesServices = require('./movies.services')
+
 //> >>GET<<
 //! /movies
 //! /movies/{id}
@@ -16,15 +18,12 @@ const router = require('express').Router()
 //> >>DELETE<<
 //! /movies/{id}
 
-//?PREFIJO
+router.get('/', moviesServices.getAllMovies)
+router.post('/', moviesServices.postMovie)
 
+router.get('/:id', moviesServices.getMovieById)
+//router.put('/movies/:id')
+//router.patch('/movies/:id')
+//router.delete('/movies/:id')
 
-router.get('/movies')
-router.post('/movies')
-
-router.get('/movies/:id')
-router.put('/movies/:id')
-router.patch('/movies/:id')
-router.delete('/movies/:id')
-
-
+module.exports = router

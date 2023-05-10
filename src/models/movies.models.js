@@ -24,6 +24,10 @@ const Movies = db.define('movies', {
         field: 'release_date',
         type: DataTypes.DATEONLY,
         allowNull: false
+    },
+    link: {
+        type: DataTypes.STRING(100),
+        allowNull: false
     }
 
 });
