@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 
+//> GET VARIABLES ENTORNO
 const config = require('./config');
 
 //>USE FORMAT JSON
