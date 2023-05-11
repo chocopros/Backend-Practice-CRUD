@@ -14,7 +14,7 @@ const postMovie = (req,res) => {
     const  data = req.body;
     if (data.name && data.genre && data.duration && data.releaseDate ) {
         moviesControllers.createMovie(data)
-            .then(r => res.status(201).json())
+            .then(r => res.status(201).json({message: `element create`}))
             .catch(err => res.status(400).json({message: err.message}))
     } else {
         res.status(400).json({message: 'Missing Data'})
@@ -59,12 +59,12 @@ const deleteMovie = (req, res) => {
     .then( r => {
         console.log(r)
         if (r) {
-            res.status(200).json({message: `>> the id:${id} has >> eliminated <<`})
+            res.status(204).json({message: `>> the id:${id} has >> eliminated <<`})
         } else {
-            res.status(404).json({message: `>> the id:${id} has >> No Found<<`})
+            res.status(400).json({message: `>> the id:${id} has >> No Found<<`})
         } 
     })
-    .catch( err => res.status(404).json({message: err.message}))
+    .catch( err => res.status(400).json({message: err.message}))
 }
 module.exports = {
     getAllMovies,
