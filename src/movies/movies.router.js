@@ -23,8 +23,8 @@ router.post('/', moviesServices.postMovie)
 
 router.get('/:id', moviesServices.getMovieById)
 router.patch('/:id', moviesServices.patchMovie)
+router.delete('/:id', moviesServices.deleteMovie)
 //router.put('/movies/:id')
-//
-//router.delete('/movies/:id')
+
 
 module.exports = router

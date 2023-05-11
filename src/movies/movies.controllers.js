@@ -38,20 +38,55 @@ const getMovieById = async(id) => {
 
 //> Editar una pelicula
 const editMovie = async(id, data) => {
-    const response = await Movies.update(data, {
+    
+    const movieId = await Movies.findOne({
         where: {
-            id: id,
+            id: id
+            //name: Mario
         }
-    })
-    return response
+    });
+
+    if (!movieId) {
+        return null;
+    } else {
+        const response = await Movies.update(data, {
+            where: {
+                id: id
+            }
+        });
+        return response;
+    }
 };
 
+//> Elminar una pelicula por ID
+
+const destroyMovie = async(id) => {
+
+    const movieId = await Movies.findOne({
+        where: {
+            id: id
+            //name: Mario
+        }
+    });
+
+    if (!movieId) {
+        return null
+    } else {
+        const response = await Movies.destroy({
+            where: {
+                id
+            }
+        })
+        return response
+    };
+};
 
 module.exports = {
     getAllMovies,
     getMovieById,
     createMovie,
-    editMovie
+    editMovie,
+    destroyMovie
 }
 
 
@@ -81,14 +116,21 @@ console.log(getAllMovies()
 //>TEST GET ID MOVIES
 /*
 console.log(getMovieById('7be32ce6-05c7-4783-befb-08e0f8d522f7')
-    .then(r => r ? console.log(r.dataValues) : console.log(">>> ID No encontrado <<<"))
+    .then(r => r ? console.log(r) : console.log(r))
     .catch(err => console.log(err))
 );
 */
 
 //>TEST EDICT MOVIE
 /*
-editMovie('267d4821-052f-4139-8190-690f8c21a444',{releaseDate: '2023-03-26'})
+editMovie('167d4821-052f-4139-8290-690f8c21a444',{releaseDate: '2023-03-26'})
+    .then(r => console.log(r))
+    .catch(err => console.log(err))
+*/
+
+//> TEST DELETE MOVIE
+/*
+destroyMovie('267d4821-052f-4139-8190-690f8c21a444')
     .then(r => console.log(r))
     .catch(err => console.log(err))
 */

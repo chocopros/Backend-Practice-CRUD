@@ -35,17 +35,41 @@ const getMovieById = (req, res) => {
 
 //> Modificacion parcial
 const patchMovie = (req, res) => {
-    const id = req.params.id
+    const id = String(req.params.id)
     const {name, genre, duration, releaseDate} = req.body
 
     moviesControllers.editMovie(id, {name, genre, duration, releaseDate})
-        .then( r => res.status(200).json({message: `>> the id:${id} has modificated`}))
-        .catch( err => res.status(400).json({message: err.message}))
+    .then( r => {
+        console.log(r)
+        if (r) {
+            res.status(200).json({message: `>> the id:${id} has >> modificated<<`})
+        } else {
+            res.status(404).json({message: `>> the id:${id} has >> Invalid <<`})
+        } 
+    })
+    .catch( err => res.status(404).json({message: err.message}))
 }
 
+//>Delete Movie
+const deleteMovie = (req, res) => {
+    const id = String(req.params.id)
+    const {name, genre, duration, releaseDate} = req.body
+
+    moviesControllers.destroyMovie(id)
+    .then( r => {
+        console.log(r)
+        if (r) {
+            res.status(200).json({message: `>> the id:${id} has >> eliminated <<`})
+        } else {
+            res.status(404).json({message: `>> the id:${id} has >> No Found<<`})
+        } 
+    })
+    .catch( err => res.status(404).json({message: err.message}))
+}
 module.exports = {
     getAllMovies,
     getMovieById,
     postMovie,
-    patchMovie
+    patchMovie,
+    deleteMovie
 }
